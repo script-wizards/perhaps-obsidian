@@ -16,35 +16,24 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/checkout@v4
-        with:
-          repository: script-wizards/perhaps
-          path: perhaps
-
       - uses: pnpm/action-setup@v4
         with:
-          version: 10
+          version: 11
 
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: pnpm
-          cache-dependency-path: perhaps/pnpm-lock.yaml
 
-      - name: Build plugin
-        working-directory: perhaps
+      - name: Build
         run: |
-          pnpm install --frozen-lockfile
-          pnpm --filter @scriptwizards/perhaps-engine build
-          pnpm --filter @scriptwizards/perhaps-obsidian build
+          pnpm install
+          pnpm build
 
-      - name: Check versions agree
+      - name: Check tag matches manifest version
         run: |
-          tag="${GITHUB_REF_NAME}"
-          root_version=$(jq -r .version manifest.json)
-          built_version=$(jq -r .version perhaps/packages/obsidian/manifest.json)
-          if [ "$tag" != "$root_version" ] || [ "$tag" != "$built_version" ]; then
-            echo "tag $tag, root manifest $root_version, monorepo manifest $built_version: must all match"
+          version=$(jq -r .version manifest.json)
+          if [ "$GITHUB_REF_NAME" != "$version" ]; then
+            echo "tag $GITHUB_REF_NAME does not match manifest version $version"
             exit 1
           fi
 
@@ -52,17 +41,15 @@ jobs:
         uses: actions/attest-build-provenance@v3
         with:
           subject-path: |
-            perhaps/packages/obsidian/main.js
-            perhaps/packages/obsidian/manifest.json
-            perhaps/packages/obsidian/styles.css
+            main.js
+            manifest.json
+            styles.css
 
       - name: Create release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh release create "$GITHUB_REF_NAME" \
-            perhaps/packages/obsidian/main.js \
-            perhaps/packages/obsidian/manifest.json \
-            perhaps/packages/obsidian/styles.css \
+            main.js manifest.json styles.css \
             --title "$GITHUB_REF_NAME" \
-            --notes "Built from script-wizards/perhaps@$(git -C perhaps rev-parse --short HEAD)"
+            --notes "Built from $GITHUB_SHA"

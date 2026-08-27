@@ -1,0 +1,60 @@
+.perhaps-block {
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+  padding: var(--size-4-3);
+  margin: var(--size-4-2) 0;
+}
+
+.perhaps-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--size-4-2);
+}
+
+.perhaps-title {
+  font-weight: var(--font-semibold);
+}
+
+.perhaps-result {
+  margin-top: var(--size-4-2);
+  line-height: 1.6;
+}
+
+.perhaps-modal-result {
+  font-size: var(--font-ui-large);
+  padding: var(--size-4-3);
+  border: 1px solid var(--background-modifier-border);
+  border-radius: var(--radius-m);
+}
+
+.perhaps-node {
+  cursor: pointer;
+  border-bottom: 1px dotted var(--text-accent);
+}
+
+.perhaps-node:hover {
+  background-color: var(--text-selection);
+}
+
+.perhaps-error {
+  margin-top: var(--size-4-1);
+  color: var(--text-error);
+  font-size: var(--font-ui-smaller);
+}
+
+.perhaps-hint {
+  margin-top: var(--size-4-2);
+  color: var(--text-muted);
+  font-size: var(--font-ui-smaller);
+}
+
+.perhaps-buttons {
+  display: flex;
+  gap: var(--size-4-2);
+  margin-top: var(--size-4-2);
+}
+
+.perhaps-copy-button {
+  margin-top: var(--size-4-2);
+}

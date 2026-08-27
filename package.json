@@ -1,0 +1,21 @@
+{
+  "name": "@scriptwizards/perhaps-obsidian",
+  "version": "0.1.2",
+  "description": "Obsidian plugin: roll random tables written in plain text in your notes",
+  "license": "Apache-2.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "tsc -p tsconfig.json && node esbuild.config.mjs production",
+    "dev": "node esbuild.config.mjs"
+  },
+  "dependencies": {
+    "@scriptwizards/perhaps-engine": "github:script-wizards/perhaps#path:packages/engine"
+  },
+  "devDependencies": {
+    "@types/node": "^22.20.1",
+    "esbuild": "^0.28.2",
+    "obsidian": "^1.8.7",
+    "typescript": "^5.9.3"
+  }
+}

@@ -44,10 +44,18 @@ Try it in the browser at [perhaps.sh](https://perhaps.sh).
 
 ## Development
 
-This repo distributes the built plugin. Source lives in the
-[perhaps monorepo](https://github.com/script-wizards/perhaps) under
-`packages/obsidian`; the engine is `@scriptwizards/perhaps-engine`, dependency
-free and platform free. Issues and PRs go to the monorepo.
+Plugin source lives here (`src/main.ts`). The table engine is
+`@scriptwizards/perhaps-engine` from the
+[perhaps monorepo](https://github.com/script-wizards/perhaps), pulled in as a
+git dependency and bundled from source.
+
+```bash
+just install
+just build
+just vault-install path/to/vault
+```
+
+Engine and spec issues go to the monorepo; plugin issues go here.
 
 ## Manual install
 
