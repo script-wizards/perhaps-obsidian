@@ -1,7 +1,7 @@
 {
   "id": "perhaps",
   "name": "Perhaps",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "minAppVersion": "1.5.0",
   "description": "Roll random tables written in plain text in your notes. Perchance-style syntax, interactive rerolls, works offline and on mobile.",
   "author": "Script Wizards",
